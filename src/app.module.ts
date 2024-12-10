@@ -2,10 +2,25 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MessagesController } from './messages/messages.controller';
-import { MessagesModule } from './messages/messages.module';
+import { z } from 'zod';
+import { ConfigModule } from '@nestjs/config';
+
+const envSchema = z.object({
+  BACKEND_PORT: z.coerce.number().min(1).max(65535),
+});
 
 @Module({
-  imports: [MessagesModule],
+  imports: [
+    ConfigModule.forRoot({
+      validate: (config) => {
+        const result = envSchema.safeParse(config);
+        if (!result.success) {
+          throw new Error('Invalid environment variables');
+        }
+        return result.data;
+      },
+    }),
+  ],
   controllers: [AppController, MessagesController],
   providers: [AppService],
 })

@@ -1,8 +1,11 @@
 import { NestFactory } from '@nestjs/core';
-import { MessageModule } from './message/message.module';
+import { ConfigService } from '@nestjs/config';
+import { AppModule } from './app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(MessageModule);
-  await app.listen(8000);
+  const app = await NestFactory.create(AppModule);
+  const configService = app.get(ConfigService);
+
+  await app.listen(configService.get<number>('BACKEND_PORT'));
 }
 bootstrap();
