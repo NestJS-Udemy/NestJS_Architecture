@@ -1,0 +1,3 @@
+### List All messages
+
+GET HTTP://localhost:8000/messages

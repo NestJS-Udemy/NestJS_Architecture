@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { MessagesController } from './messages/messages.controller';
 import { z } from 'zod';
 import { ConfigModule } from '@nestjs/config';
+import { MessagesModule } from './messages/messages.module';
 
 const envSchema = z.object({
   BACKEND_PORT: z.coerce.number().min(1).max(65535),
@@ -20,6 +21,7 @@ const envSchema = z.object({
         return result.data;
       },
     }),
+    MessagesModule,
   ],
   controllers: [AppController, MessagesController],
   providers: [AppService],
