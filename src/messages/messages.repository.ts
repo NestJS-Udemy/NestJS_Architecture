@@ -9,14 +9,14 @@ export class MessageRepository {
   }
 
   async findAll() {
-    const contents = await fs.readFile('message.json', 'utf8');
+    const contents = await fs.readFile('messages.json', 'utf8');
     const messages = JSON.parse(contents);
 
     return messages;
   }
 
   async create(content: string) {
-    const contents = await fs.readFile('message.json', 'utf8');
+    const contents = await fs.readFile('messages.json', 'utf8');
     const messages = JSON.parse(contents);
 
     const id = Math.floor(Math.random() * 999);
