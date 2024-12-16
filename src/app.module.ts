@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { MessagesController } from './messages/messages.controller';
 import { z } from 'zod';
 import { ConfigModule } from '@nestjs/config';
 import { MessagesModule } from './messages/messages.module';
@@ -23,7 +22,7 @@ const envSchema = z.object({
     }),
     MessagesModule,
   ],
-  controllers: [AppController, MessagesController],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}

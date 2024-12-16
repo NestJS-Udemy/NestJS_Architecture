@@ -7,8 +7,8 @@ POST HTTP://localhost:8000/messages
 Content-Type: application/json
 
 {
-    "content": "hi rani"
+    "content": "message after adding DI"
 }
 
 ### Get a particulara message
-GET HTTP://localhost:8000/messages/418
+GET HTTP://localhost:8000/messages/547
